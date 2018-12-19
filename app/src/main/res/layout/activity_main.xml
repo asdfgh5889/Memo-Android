@@ -8,12 +8,19 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:layout_height="wrap_content"
+        android:background="#000">
+        <ImageButton
+            android:id="@+id/logout"
+            android:layout_width="40dp"
+            android:src="@drawable/logout"
+            android:layout_height="40dp"
+            android:text="Departure"
+            android:layout_gravity="right" />
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_memo"

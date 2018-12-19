@@ -7,9 +7,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ImageButton logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,5 +34,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        init();
+    }
+
+    private void init() {
+        logout = findViewById(R.id.logout);
+        logout.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                intent = new Intent(MainActivity.this, Sign_in.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

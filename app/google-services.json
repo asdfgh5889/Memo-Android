@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "108865797956",
-    "firebase_url": "https://memo-android-b6238.firebaseio.com",
-    "project_id": "memo-android-b6238",
-    "storage_bucket": "memo-android-b6238.appspot.com"
+    "project_number": "664252695806",
+    "firebase_url": "https://memo-9acd4.firebaseio.com",
+    "project_id": "memo-9acd4",
+    "storage_bucket": "memo-9acd4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:108865797956:android:c1f563f19fd0f24c",
+        "mobilesdk_app_id": "1:664252695806:android:c1f563f19fd0f24c",
         "android_client_info": {
           "package_name": "lab.humanz.memo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "108865797956-5hdk8ll0rbj2jhnmqhvpj14kd7fpj6gr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "lab.humanz.memo",
-            "certificate_hash": "b1061538a2233e9f12b22a36e424f35be948b3eb"
-          }
-        },
-        {
-          "client_id": "108865797956-e7jpl9085eerjltq9rkhq3dl0nutb0nb.apps.googleusercontent.com",
+          "client_id": "664252695806-6cb9nmgttlnk7f5kbu44tio9u8bak19k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCib6f3vKdvovcDlbqFQm3pIjsG-SI_afQ"
+          "current_key": "AIzaSyDyIjdvff7EzzxR9U2U90S1jdev7NAah2A"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "108865797956-e7jpl9085eerjltq9rkhq3dl0nutb0nb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
