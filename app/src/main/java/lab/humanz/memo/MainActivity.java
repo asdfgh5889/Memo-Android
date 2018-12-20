@@ -14,13 +14,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        essentialInit();
+        setupToolbar();
+        setupFab();
+    }
+
+    private void essentialInit() {
+        Memo.imageDir = this.getDir("images", MODE_PRIVATE);
+    }
+
+    private void setupToolbar() {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Notes");
+    }
 
-
+    private void setupFab() {
         FloatingActionButton fab = findViewById(R.id.add_memo);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
