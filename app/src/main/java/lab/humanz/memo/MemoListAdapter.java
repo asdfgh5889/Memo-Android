@@ -44,7 +44,7 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoVi
 
         public MemoViewHolder(View itemView) {
             super(itemView);
-            memo_title = itemView.findViewById(R.id.memo_title);
+            memo_title = itemView.findViewById(R.id.memo_date);
             memo_body = itemView.findViewById(R.id.memo_body);
 
         }
