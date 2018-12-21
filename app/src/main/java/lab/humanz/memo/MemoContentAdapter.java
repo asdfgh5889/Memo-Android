@@ -10,7 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MemoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+interface MemoContentAdapterDelegate {
+    public void alterTextMemoAt(int position, String text);
+}
+
+public class MemoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements MemoContentAdapterDelegate {
     public Memo memo;
 
     public MemoContentAdapter(Memo memo) {
@@ -18,15 +22,24 @@ public class MemoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.memo = memo;
     }
 
+    /**
+     * Alters text content at given position
+     * @param position at recycler view
+     * @param text new text
+     */
+    public void alterTextMemoAt(int position, String text) {
+        if (this.memo.contentTypes.size() > position)
+            this.memo.textContents.set(this.memo.getPositionFor(position), text);
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         switch (viewType) {
             case Memo.TEXT:
-                return new TextMemoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.text_memo_layout, parent, false));
+                return new TextMemoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.text_memo_layout, parent, false), this);
             case Memo.IMAGE:
-                return new ImageMemoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.image_memo_layout, parent, false));
+                return new ImageMemoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.image_memo_layout, parent, false), this);
             case Memo.AUDIO:
                 break;
         }
@@ -36,12 +49,14 @@ public class MemoContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Log.d("MEMO", "Adapter: Binding on position " + position + " type of: " + (holder.getItemViewType() == Memo.TEXT ? "Text" : "Image"));
         switch (holder.getItemViewType()) {
             case Memo.TEXT:
+                ((TextMemoViewHolder) holder).position = position;
                 ((TextMemoViewHolder) holder).textMemo.setText(this.memo.textContents.get(this.memo.getPositionFor(position)));
-                ((TextMemoViewHolder) holder).memoText = this.memo.textContents.get(position);
                 break;
             case Memo.IMAGE:
+                ((ImageMemoViewHolder) holder).position = position;
                 ((ImageMemoViewHolder) holder).memoImage.setImageBitmap(this.memo.imageBitmapCache.get(this.memo.getPositionFor(position)));
                 break;
             case Memo.AUDIO:
