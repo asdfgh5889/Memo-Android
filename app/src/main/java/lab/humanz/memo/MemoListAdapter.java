@@ -13,9 +13,9 @@ import java.util.List;
 
 public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoViewHolder>{
 
-    private List<MemoModel> memos;
+    private List<Memo> memos;
 
-    public MemoListAdapter(List<MemoModel> memos) {
+    public MemoListAdapter(List<Memo> memos) {
         this.memos = memos;
     }
 
@@ -28,7 +28,7 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoVi
 
     @Override
     public void onBindViewHolder(@NonNull MemoViewHolder holder, int position) {
-        MemoModel memo = memos.get(position);
+        Memo memo = memos.get(position);
         holder.setUpData(memo);
     }
 
@@ -49,9 +49,10 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoVi
 
         }
 
-        public void setUpData(MemoModel memo) {
-            memo_title.setText(memo.getTitle());
-            memo_body.setText(memo.getContent());
+        public void setUpData(Memo memo) {
+            //memo_title.setText(memo.textContents.get(0));
+            if (memo.textContents.size() > 0)
+                memo_body.setText(memo.textContents.get(0));
         }
     }
 }

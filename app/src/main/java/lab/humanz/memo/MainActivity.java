@@ -81,21 +81,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public List<MemoModel> dummydata(){
-        List<MemoModel> memos = new ArrayList<>();
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-
+    public List<Memo> dummydata(){
+        List<Memo> memos = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Memo temp = new Memo();
+            temp.insertTextContent(i + " Something test");
+            memos.add(temp);
+        }
         return memos;
     }
 }
