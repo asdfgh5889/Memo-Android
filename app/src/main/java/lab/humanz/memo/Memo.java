@@ -6,9 +6,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +19,7 @@ import java.util.Map;
 
 //Model for memo
 //Every insertion must be used by its own functions
-public class Memo
+public class Memo implements Serializable
 {
     public static final int AUDIO = 0;
     public static final int TEXT = 1;
@@ -80,6 +83,7 @@ public class Memo
                 this.imageBitmapCache.remove(this.imageBitmapCache.size() - 1);
             } break;
         }
+        this.contentTypes.remove(this.contentTypes.size() - 1);
     }
 
     /**
@@ -120,11 +124,16 @@ public class Memo
      * @param imageName image id.
      */
     private void saveImage(Bitmap image, String imageName) {
-        try (FileOutputStream out = new FileOutputStream(new File(imageDir, imageName))) {
-            image.compress(Bitmap.CompressFormat.JPEG, 80, out);
-        } catch (IOException e) {
-            e.printStackTrace();
-       }
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 80, byteArray);
+        File imageFile = new File(imageDir, this.hashBitmap(byteArray.toByteArray()));
+        if (imageFile.exists()) {
+            try (FileOutputStream out = new FileOutputStream(imageFile)) {
+                byteArray.writeTo(out);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -143,5 +152,23 @@ public class Memo
             compressed = Bitmap.createScaledBitmap(imageBitmap, width, compressedImageSize, true);
         }
         return  compressed;
+    }
+
+    /**
+     * Creates md5 hash of bitmap image
+     * @param imageByte
+     * @return md5 hash string
+     */
+    private String hashBitmap(byte[] imageByte) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = digest.digest(imageByte);
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
