@@ -83,18 +83,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public List<MemoModel> dummydata(){
         List<MemoModel> memos = new ArrayList<>();
-        memos.add(new MemoModel("Home", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("1", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("2", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("3", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("4", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("5", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("Home", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("1", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("2", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("3", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("4", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
-        memos.add(new MemoModel("5", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Dec 21", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
 
         return memos;
     }
