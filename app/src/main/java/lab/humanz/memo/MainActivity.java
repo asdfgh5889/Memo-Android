@@ -5,6 +5,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,9 +14,13 @@ import android.widget.ImageButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton logout;
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         essentialInit();
         setupToolbar();
         setupFab();
+        setupMemoList();
+    }
+
+    private void setupMemoList() {
+        recyclerView = findViewById(R.id.memo_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        MemoListAdapter adapter = new MemoListAdapter(dummydata());
+        recyclerView.setAdapter(adapter);
     }
 
     private void essentialInit() {
@@ -65,5 +79,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
         }
+    }
+
+    public List<MemoModel> dummydata(){
+        List<MemoModel> memos = new ArrayList<>();
+        memos.add(new MemoModel("Home", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("1", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("2", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("3", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("4", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("5", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("Home", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("1", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("2", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("3", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("4", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+        memos.add(new MemoModel("5", "sdgjhds sjfh dsb sldfhasd fhiasufh aif"));
+
+        return memos;
     }
 }

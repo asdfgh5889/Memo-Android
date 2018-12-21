@@ -22,20 +22,25 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
     private EditText emailTxt;
     private EditText pwdTExt;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        mAuth = FirebaseAuth.getInstance();
+        init();
+        mAuth = FirebaseAuth.getInstance();// check user credentials
+/**
+ * function for automatic sign in if user already signed in
+ */
+        if(mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(Sign_in.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
-          init();
-
-
-    }
-
+     }
+    /**
+     * UI items initialization function
+     */
     private void init() {
         login = findViewById(R.id.btnLogin);
         login.setOnClickListener(this);
@@ -43,6 +48,10 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
         pwdTExt = findViewById(R.id.loginPwd);
     }
 
+    /**
+     *
+     * @param view checking user credentials to sign in (Email and Password)
+     */
     @Override
     public void onClick(View view) {
         String email = emailTxt.getText().toString();
@@ -53,8 +62,8 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                         FirebaseUser user = mAuth.getCurrentUser();
-                            if(mAuth.getCurrentUser()!=null){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (mAuth.getCurrentUser() != null) {
                                 startActivity(new Intent(Sign_in.this, MainActivity.class));
                             }
                         } else {
@@ -62,19 +71,14 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
 
                             Toast.makeText(Sign_in.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
                         }
-
-                        // ...
                     }
                 });
-
     }
 
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
     }
 }

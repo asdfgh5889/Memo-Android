@@ -8,6 +8,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        /**
+         * firebase initialization for app  settings
+         */
         FirebaseApp.initializeApp(this);
     }
 }

@@ -31,4 +31,11 @@
         app:backgroundTint="#FFC400"
         android:src="@drawable/ic_plus"
         android:tint="#fff"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/memo_list"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </FrameLayout>
