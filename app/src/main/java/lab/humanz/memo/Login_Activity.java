@@ -16,6 +16,9 @@ import com.google.firebase.FirebaseApp;
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * UI items initialization
+     */
     private SignInButton button;
     private TextView registration;
     private Button sing_in;
@@ -24,13 +27,20 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-
+/**
+ * sign in with google firebase option implementation
+ * here you can get user information by using  mGoogleSignInClient object
+ */
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
         .build();
+
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
+    /**
+     * initialization of items
+     */
     private void init() {
         button = findViewById(R.id.sign_in_button);
         button.setOnClickListener(this);
@@ -43,6 +53,9 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        /**
+         * segue implementation from login page to required pages
+         */
         Intent intent;
         switch (view.getId()){
             case R.id.singn_in:

@@ -32,8 +32,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         init();
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
     }
 
+    /**
+     * UI items initialization
+     */
     private void init() {
         registerBtn = findViewById(R.id.btnRegister);
         registerBtn.setOnClickListener(this);
@@ -48,6 +52,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * firebase registration function implementation
+     * @param view
+     */
     public void onClick(View view) {
         String email = emailTxt.getText().toString();
         String password = passwordTxt.getText().toString();
