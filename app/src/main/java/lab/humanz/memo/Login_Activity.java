@@ -13,12 +13,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Login_Activity extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * UI items initialization
      */
+    private FirebaseAuth mAuth;
     private SignInButton button;
     private TextView registration;
     private Button sing_in;
@@ -36,6 +38,16 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
         .build();
 
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        mAuth = FirebaseAuth.getInstance();// check user credentials
+/**
+ * function for automatic sign in if user already signed in
+ */
+        if(mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(Login_Activity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /**
