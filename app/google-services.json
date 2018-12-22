@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "664252695806-mrbeqmllml5nuk3eouup33n2qo3n2brt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lab.humanz.memo",
+            "certificate_hash": "4c22816c669cf76e4c4eef1e5657f76749e6367e"
+          }
+        },
+        {
           "client_id": "664252695806-6cb9nmgttlnk7f5kbu44tio9u8bak19k.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664252695806-6cb9nmgttlnk7f5kbu44tio9u8bak19k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
