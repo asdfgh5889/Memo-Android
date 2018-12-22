@@ -60,6 +60,10 @@
                 android:background="@android:color/transparent"
                 android:tint="@color/toolbar_icon"
                 android:scaleType="fitCenter" />
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 

@@ -44,6 +44,7 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
  * function for automatic sign in if user already signed in
  */
         if(mAuth.getCurrentUser() != null){
+            DataController.getInstance().initDatabaseWith(mAuth.getCurrentUser());
             Intent intent = new Intent(Login_Activity.this, MainActivity.class);
             startActivity(intent);
             finish();
