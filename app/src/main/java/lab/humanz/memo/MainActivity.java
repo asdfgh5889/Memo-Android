@@ -79,6 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logout.setOnClickListener(this);
     }
 
+    /**
+     *
+     * @param viewO onClick functions are implememted here
+     *              Logout
+     *              sellected MemoCard
+     *              Delete
+     */
 
     @Override
     public void onClick(View view) {
@@ -86,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                intent = new Intent(MainActivity.this, Sign_in.class);
+                intent = new Intent(MainActivity.this, Login_Activity.class);
                 startActivity(intent);
                 break;
         }
