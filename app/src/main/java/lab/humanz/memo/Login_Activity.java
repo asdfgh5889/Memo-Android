@@ -144,8 +144,11 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                         if (task.isSuccessful()) {
                             Log.d("GOOGLE", "onActivityResult: success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(Login_Activity.this, MainActivity.class);
-                            Login_Activity.this.startActivity(intent);
+                            if (user != null) {
+                                DataController.getInstance().initDatabaseWith(user);
+                                Intent intent = new Intent(Login_Activity.this, MainActivity.class);
+                                Login_Activity.this.startActivity(intent);
+                            }
                         }else {
                             // If sign in fails, display a message to the user.
                             Log.w("GOOGLE", "signInWithCredential:failure", task.getException());

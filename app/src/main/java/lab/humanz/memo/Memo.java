@@ -105,7 +105,7 @@ public class Memo implements Serializable
         if(this.imageBitmapCache == null)
             this.imageBitmapCache = new ArrayList<>();
         Bitmap compressed = this.compressImage(image);
-        String hash = this.saveImage(compressed, imageId.toString());
+        String hash = this.saveImage(compressed);
         this.contentTypes.add(IMAGE);
         this.imageContents.add(hash);
         this.imageBitmapCache.add(compressed);
@@ -133,19 +133,18 @@ public class Memo implements Serializable
      * Saves given image to a file with given file name.
      * Here file name must be id of image file.
      * @param image
-     * @param imageName image id.
      * @return hash of saved image
      */
-    private String saveImage(Bitmap image, String imageName) {
+    private String saveImage(Bitmap image) {
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 80, byteArray);
         String hash = this.hashBitmap(byteArray.toByteArray());
         File imageFile = new File(imageDir, hash);
-        if (imageFile.exists()) {
+        if (!imageFile.exists()) {
             try (FileOutputStream out = new FileOutputStream(imageFile)) {
                 byteArray.writeTo(out);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("FILE", "saveImage: " + e.getLocalizedMessage());
             }
         }
         return  hash;
