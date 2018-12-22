@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Sign_in extends AppCompatActivity implements View.OnClickListener {
-
     private FirebaseAuth mAuth;
     private Button login;
     private EditText emailTxt;
@@ -40,8 +39,8 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
     }
 
     /**
-     *
-     * @param view checking user credentials to sign in (Email and Password)
+     * Checking user credentials to sign in (Email and Password)
+     * @param view
      */
     @Override
     public void onClick(View view) {
@@ -55,6 +54,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (mAuth.getCurrentUser() != null) {
+                                DataController.getInstance().initDatabaseWith(mAuth.getCurrentUser());
                                 startActivity(new Intent(Sign_in.this, MainActivity.class));
                             }
                         } else {

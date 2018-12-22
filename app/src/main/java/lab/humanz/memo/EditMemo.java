@@ -54,6 +54,8 @@ public class EditMemo extends AppCompatActivity {
         this.setupToolbar();
         findViewById(R.id.place_holder).setOnTouchListener(this.newMemoContent);
         this.adapter.notifyDataSetChanged();
+
+        findViewById(R.id.save_button).setOnClickListener(this.saveMemoAction);
     }
 
     //Sets up toolbar
@@ -83,6 +85,9 @@ public class EditMemo extends AppCompatActivity {
         }
     };
 
+    /**
+     * Adds new EditText Field after image content
+     */
     private View.OnTouchListener newMemoContent = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -93,6 +98,20 @@ public class EditMemo extends AppCompatActivity {
             return true;
         }
     };
+
+    private View.OnClickListener saveMemoAction = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            saveMemo();
+        }
+    };
+
+    /**
+     * Saves current memo to database
+     */
+    private void saveMemo() {
+        DataController.getInstance().writeMemoToDB(this.memo);
+    }
 
     public void insertText(String text) {
         Log.d("MEMO", "insertText: " + text);
