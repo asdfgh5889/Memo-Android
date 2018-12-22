@@ -5,6 +5,10 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.util.Log;
+
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -19,6 +23,8 @@ import java.util.Map;
 
 //Model for memo
 //Every insertion must be used by its own functions
+
+@IgnoreExtraProperties
 public class Memo implements Serializable
 {
     public static final int AUDIO = 0;
@@ -29,6 +35,7 @@ public class Memo implements Serializable
     public static File imageDir;
     private static int compressedImageSize = 1000;
 
+    public String id;
     /**
      * Defines order and type of content of memo
      */
@@ -42,11 +49,12 @@ public class Memo implements Serializable
     /**
      * Image content ids, ids also are image file names
      */
-    public List<Integer> imageContents;
+    public List<String> imageContents;
 
     /**
      * Bitmap images are cached here
      */
+    @Exclude
     public List<Bitmap> imageBitmapCache;
 
     public Memo()
@@ -96,11 +104,10 @@ public class Memo implements Serializable
             this.imageContents = new ArrayList<>();
         if(this.imageBitmapCache == null)
             this.imageBitmapCache = new ArrayList<>();
-
         Bitmap compressed = this.compressImage(image);
-        this.saveImage(compressed, imageId.toString());
+        String hash = this.saveImage(compressed, imageId.toString());
         this.contentTypes.add(IMAGE);
-        this.imageContents.add(imageId++);
+        this.imageContents.add(hash);
         this.imageBitmapCache.add(compressed);
     }
 
@@ -111,9 +118,14 @@ public class Memo implements Serializable
      */
     public int getPositionFor(Integer itemPosition){
         int contentPosition = 0;
-        for (int i = 0; i <= itemPosition; i++)
-            if (contentTypes.get(itemPosition) == contentTypes.get(i))
+        Log.d("POSITION", "getPositionFor: " + itemPosition);
+        for (int i = 0; i < itemPosition; i++) {
+            Log.d("POSITION", "getPositionFor: i: " + i + " -- " + contentTypes.get(itemPosition) + " == " + contentTypes.get(i));
+            if (contentTypes.get(itemPosition).equals(contentTypes.get(i))) {
                 contentPosition++;
+                Log.d("POSITION", "getPositionFor: " + contentPosition + " i: " + i);
+            }
+        }
         return contentPosition;
     }
 
@@ -122,11 +134,13 @@ public class Memo implements Serializable
      * Here file name must be id of image file.
      * @param image
      * @param imageName image id.
+     * @return hash of saved image
      */
-    private void saveImage(Bitmap image, String imageName) {
+    private String saveImage(Bitmap image, String imageName) {
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 80, byteArray);
-        File imageFile = new File(imageDir, this.hashBitmap(byteArray.toByteArray()));
+        String hash = this.hashBitmap(byteArray.toByteArray());
+        File imageFile = new File(imageDir, hash);
         if (imageFile.exists()) {
             try (FileOutputStream out = new FileOutputStream(imageFile)) {
                 byteArray.writeTo(out);
@@ -134,6 +148,7 @@ public class Memo implements Serializable
                 e.printStackTrace();
             }
         }
+        return  hash;
     }
 
     /**
