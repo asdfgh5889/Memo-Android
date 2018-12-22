@@ -45,8 +45,6 @@ public class EditMemo extends AppCompatActivity {
             this.memo = tempMemo;
         else
             this.memo = new Memo();
-
-        this.memo.insertTextContent("Some test note");
         this.memoContent = findViewById(R.id.memo_content);
         this.pickImageButton = findViewById(R.id.pick_image_button);
         this.pickImageButton.setOnClickListener(this.pickMemoImage);

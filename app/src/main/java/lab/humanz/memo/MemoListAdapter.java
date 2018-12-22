@@ -2,6 +2,7 @@ package lab.humanz.memo;
 
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,11 @@ import java.util.List;
 public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoViewHolder>{
 
     private List<Memo> memos;
+    private final OnItemClick itemClick;
 
-    public MemoListAdapter(List<Memo> memos) {
+    public MemoListAdapter(List<Memo> memos, OnItemClick itemClick) {
         this.memos = memos;
+        this.itemClick = itemClick;
     }
 
     @NonNull
@@ -41,11 +44,21 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoVi
 
         TextView memo_title;
         TextView memo_body;
+        CardView memo_card;
+
 
         public MemoViewHolder(View itemView) {
             super(itemView);
             memo_title = itemView.findViewById(R.id.memo_date);
             memo_body = itemView.findViewById(R.id.memo_body);
+            memo_card = itemView.findViewById(R.id.memo_card);
+
+            memo_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemClick.OnClickchange(getPosition());
+                }
+            });
 
         }
 
@@ -54,5 +67,9 @@ public class MemoListAdapter extends RecyclerView.Adapter<MemoListAdapter.MemoVi
             if (memo.textContents.size() > 0)
                 memo_body.setText(memo.textContents.get(0));
         }
+    }
+
+    public interface OnItemClick{
+        void OnClickchange(int position);
     }
 }

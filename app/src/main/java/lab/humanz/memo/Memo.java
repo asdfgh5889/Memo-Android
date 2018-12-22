@@ -111,7 +111,7 @@ public class Memo implements Serializable
      */
     public int getPositionFor(Integer itemPosition){
         int contentPosition = 0;
-        for (int i = 0; i < itemPosition; i++)
+        for (int i = 0; i <= itemPosition; i++)
             if (contentTypes.get(itemPosition) == contentTypes.get(i))
                 contentPosition++;
         return contentPosition;

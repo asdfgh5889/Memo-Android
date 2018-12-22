@@ -28,15 +28,6 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_sign_in);
         init();
         mAuth = FirebaseAuth.getInstance();// check user credentials
-/**
- * function for automatic sign in if user already signed in
- */
-//        if(mAuth.getCurrentUser() != null){
-//            Intent intent = new Intent(Sign_in.this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-
      }
     /**
      * UI items initialization function

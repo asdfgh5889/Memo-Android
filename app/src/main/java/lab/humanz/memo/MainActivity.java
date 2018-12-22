@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +35,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setupMemoList() {
         recyclerView = findViewById(R.id.memo_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-        MemoListAdapter adapter = new MemoListAdapter(dummydata());
+        /**
+         * segue from memo list to selected memo edit page
+         */
+        MemoListAdapter adapter = new MemoListAdapter(dummydata(), new MemoListAdapter.OnItemClick() {
+            @Override
+            public void OnClickchange(int position) {
+                Intent intent = new Intent(MainActivity.this, EditMemo.class);
+                intent.putExtra(EditMemo.MEMO_TO_EDIT, dummydata().get(position));
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 
